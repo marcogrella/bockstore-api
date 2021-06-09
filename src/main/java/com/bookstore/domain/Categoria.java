@@ -20,11 +20,12 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     private String nome;
     private String descricao;
 
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria") /* orphanRemoval=true irá apagar a categoria e seus dependentes (livros) */
     private List<Livro> livros = new ArrayList<>();
 
 

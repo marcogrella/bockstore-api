@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.bookstore.domain.Categoria;
@@ -44,6 +45,18 @@ public class CategoriaService {
 		obj.setNome(objDto.getNome());
 		obj.setDescricao(objDto.getDescricao());
 		return categoriaRepository.save(obj); /*salva já com os dados atualizados. */
+	}
+
+	public void delete(Integer id) {
+		findById(id);
+		
+		try {
+			categoriaRepository.deleteById(id);
+		}catch(DataIntegrityViolationException e){ /* essa exceção é do Spring e não a personalizada. */
+			throw new com.bookstore
+						.service.exceptions
+						.DataIntegrityViolationException("Categoria não pode ser excluída! Possui livros associados.");
+		}
 	}
 	
 }
