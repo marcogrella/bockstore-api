@@ -1,5 +1,10 @@
 package com.bookstore.resources.exceptions;
 
+/* A classe Standard Error possui somente estes 3 campos, no entanto 
+ * quando acontecem uma lista de erros possíveis (campo nulo, número inválido de caractéres etc)
+ * foi criada a classe ValidationError */
+
+
 public class StandardError {
 	
 	private Long timestamp;

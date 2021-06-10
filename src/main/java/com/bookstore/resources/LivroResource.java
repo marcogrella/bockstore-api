@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,6 +25,7 @@ import com.bookstore.domain.Livro;
 import com.bookstore.dto.LivroDTO;
 import com.bookstore.services.LivroService;
 
+@CrossOrigin("*") /* habilita requisições vindas de diversas outras fontes. Para uso posterior no Front Angular */
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroResource {
@@ -45,21 +49,21 @@ public class LivroResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj){
+	public ResponseEntity<Livro> update(@PathVariable Integer id,@Valid @RequestBody Livro obj){
 		Livro newObj = livroService.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
 	
 	/* Normalmente o patch é para atualizar somente uma informação (título por exemplo) */
 	@PatchMapping(value = "/{id}")
-	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @RequestBody Livro obj){
+	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id,@Valid @RequestBody Livro obj){
 		Livro newObj = livroService.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
 
 	@PostMapping()
 	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
-			@RequestBody Livro obj){
+			@Valid @RequestBody Livro obj){
 	
 		Livro newObj = livroService.create(id_cat, obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri();
