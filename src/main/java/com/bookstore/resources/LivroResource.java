@@ -25,7 +25,7 @@ import com.bookstore.domain.Livro;
 import com.bookstore.dto.LivroDTO;
 import com.bookstore.services.LivroService;
 
-@CrossOrigin("*") /* habilita requisições vindas de diversas outras fontes. Para uso posterior no Front Angular */
+@CrossOrigin(origins="*") /* habilita requisições vindas de diversas outras fontes. Para uso posterior no Front Angular */
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroResource {

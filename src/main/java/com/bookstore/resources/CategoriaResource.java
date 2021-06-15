@@ -24,7 +24,7 @@ import com.bookstore.domain.Categoria;
 import com.bookstore.dto.CategoriaDTO;
 import com.bookstore.services.CategoriaService;
 
-@CrossOrigin("*") /* habilita requisições vindas de diversas outras fontes. Para uso posterior no Front Angular */
+@CrossOrigin(origins="*") /* habilita requisições vindas de diversas outras fontes. Para uso posterior no Front Angular */
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
