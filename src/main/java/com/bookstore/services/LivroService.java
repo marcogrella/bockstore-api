@@ -34,17 +34,16 @@ public class LivroService {
 	}
 
 	public Livro update(Integer id, Livro obj) {
-		Livro newObj = findById(id);
-		updateData(newObj, obj);
-		return livroRepository.save(newObj);
+		Livro objetoBd = findById(id);
+		updateData(objetoBd, obj);			
+		return livroRepository.save(objetoBd);
 		
 	}
 
-	private void updateData(Livro newObj, Livro obj) {
-		newObj.setCategoria(obj.getCategoria());
-		newObj.setNome_autor(obj.getNome_autor());
-		newObj.setTexto(obj.getTexto());
-		newObj.setTitulo(obj.getTitulo());
+	private void updateData(Livro objetoBd, Livro obj) {
+		objetoBd.setNome_autor(obj.getNome_autor());
+		objetoBd.setTexto(obj.getTexto());
+		objetoBd.setTitulo(obj.getTitulo());
 		
 	}
 
@@ -55,6 +54,7 @@ public class LivroService {
 		return livroRepository.save(obj);
 
 	}
+	
 
 	public void delete(Integer id) {
 		Livro obj = findById(id);
