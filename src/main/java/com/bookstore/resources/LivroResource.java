@@ -48,19 +48,25 @@ public class LivroResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
+	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Livro> update(@PathVariable Integer id,@Valid @RequestBody Livro obj){
 		Livro newObj = livroService.update(id, obj);
 		return ResponseEntity.ok().body(newObj);
 	}
 	
+	
 	/* Normalmente o patch é para atualizar somente uma informação (título por exemplo) */
-	@PatchMapping(value = "/{id}")
-	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id,@Valid @RequestBody Livro obj){
-		Livro newObj = livroService.update(id, obj);
-		return ResponseEntity.ok().body(newObj);
-	}
+	// @PatchMapping(value = "/{id}")
+	// public ResponseEntity<Livro> updatePatch(@PathVariable Integer id,@Valid @RequestBody Livro obj){
+		// Livro newObj = livroService.update(id, obj);
+		//return ResponseEntity.ok().body(newObj);
+	// }
+	 
+	
+	
 
+	
 	@PostMapping()
 	public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
 			@Valid @RequestBody Livro obj){
